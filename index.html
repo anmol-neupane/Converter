@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper {
+            height: 350px;
+            width: 300px;
+            background-color: white;
+            box-shadow: 1px 1px 1px 1px black;
+            border-radius: 50px;
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            padding: 30px;
+            justify-content: center;
+        }
+
+        .wrapper>input {
+            height: 50px;
+            border-radius: 10px;
+            border: 1px rgb(163, 163, 163) solid;
+        }
+
+        .wrapper>button {
+            height: 50px;
+            border-radius: 10px;
+            border: 1px rgb(163, 163, 163) solid;
+            background-color: rgb(116, 171, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h3>Temperature Converter</h3>
+        <label>Celsius</label>
+        <input type="number" name="celsius" id="celsius">
+        <label>Fahrenheit</label>
+        <input type="number" name="fahrenheit" id="fahrenheit" readonly>
+        <button id="convert-btn">Convert</button>
+    </div>
+
+    <script>
+        let convertBtn = document.getElementById('convert-btn');
+
+        const celsiusToFahrenheit = (c) => {
+            return (c * (9 / 5)) + 32;
+        }
+
+        const convertTemperature = () => {
+            let celsiusInputField = document.getElementById('celsius');
+            let fahrenheitField = document.getElementById('fahrenheit');
+            let celsiusValue = parseFloat(celsiusInputField.value);
+
+            if (!isNaN(celsiusValue)) {
+                let fahrenheitValue = celsiusToFahrenheit(celsiusValue);
+                fahrenheitField.value = fahrenheitValue.toFixed(2);
+            } else {
+                fahrenheitField.value = '';
+                alert("Please enter a valid number in the Celsius field.");
+            }
+        }
+
+        convertBtn.addEventListener('click', convertTemperature);
+    </script>
+</body>
+
+</html>
